@@ -561,7 +561,7 @@ class OpenScenarioParser(object):
 
             transform = waypoint.transform
             if lane_pos.find('Orientation') is not None:
-                orientation = rel_pos.find('Orientation')
+                orientation = lane_pos.find('Orientation')
                 dyaw = math.degrees(float(orientation.attrib.get('h', 0)))
                 dpitch = math.degrees(float(orientation.attrib.get('p', 0)))
                 droll = math.degrees(float(orientation.attrib.get('r', 0)))
@@ -1016,7 +1016,8 @@ class OpenScenarioParser(object):
                                                       distance_other_lane=1000,
                                                       name=maneuver_name)
                 else:
-                    raise AttributeError("Unknown lateral action")
+                    #raise AttributeError("Unknown lateral action")
+                    return None
             elif private_action.find('VisibilityAction') is not None:
                 raise NotImplementedError("Visibility actions are not yet supported")
             elif private_action.find('SynchronizeAction') is not None:

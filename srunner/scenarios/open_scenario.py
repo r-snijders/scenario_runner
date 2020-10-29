@@ -308,6 +308,8 @@ class OpenScenario(BasicScenario):
                                     for actor_id in actor_ids:
                                         maneuver_behavior = OpenScenarioParser.convert_maneuver_to_atomic(
                                             child, joint_actor_list[actor_id], self.config.catalogs)
+                                        if maneuver_behavior is None:
+                                            continue
                                         maneuver_behavior = StoryElementStatusToBlackboard(
                                             maneuver_behavior, "ACTION", child.attrib.get('name'))
                                         parallel_actions.add_child(

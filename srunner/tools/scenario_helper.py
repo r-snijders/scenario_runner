@@ -309,8 +309,10 @@ def generate_target_waypoint_list_multilane(waypoint, change='left',
     distance = 0
     while distance < distance_other_lane:
         next_wp = plan[-1][0].next(step_distance)
-        distance += next_wp[0].transform.location.distance(plan[-1][0].transform.location)
-        plan.append((next_wp[0], RoadOption.LANEFOLLOW))
+        #print(len(next_wp))
+        if len(next_wp) > 0:
+            distance += next_wp[0].transform.location.distance(plan[-1][0].transform.location)
+            plan.append((next_wp[0], RoadOption.LANEFOLLOW))
 
     return plan, target_lane_id
 
